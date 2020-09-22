@@ -1,0 +1,14 @@
+[Unit]
+Description=Leads Pipe server
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/leadspipe
+EnvironmentFile=/var/www/leadspipe/.env
+ExecStart=/root/.cache/pypoetry/virtualenvs/leadspipe-c_LxlCdo-py3.8/bin/uvicorn main:app --uds /tmp/leadspipe.sock --log-level debug
+Restart=always
+KillMode=mixed
+TimeoutStopSec=5
+
+[Install]
+WantedBy=multi-user.target
